@@ -17,7 +17,7 @@ jobs:
 
       - name: Extract source
         run: |
-          unzip -q Warp-Go-TV-MASQUE-stage2-source.zip
+          unzip -q Warp-Go-TV-MASQUE-stage3-source.zip
           echo "PROJECT_DIR=warp-go-masque-backup-main" >> "$GITHUB_ENV"
           sed -i '/const MODES:/d' warp-go-masque-backup-main/gui/frontend/src/lib/theme.ts
 
@@ -133,12 +133,12 @@ jobs:
         run: |
           cp \
             "${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/app-release.apk" \
-            "${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage2.apk"
+            "${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage3.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Warp-TV-Ultra-Stage2
           path: |
-            ${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage2.apk
+            ${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage3.apk
           if-no-files-found: error
