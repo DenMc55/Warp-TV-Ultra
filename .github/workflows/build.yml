@@ -17,7 +17,7 @@ jobs:
 
       - name: Extract source
         run: |
-          unzip -q Warp-Go-TV-MASQUE-stage1-source.zip
+          unzip -q Warp-Go-TV-MASQUE-stage2-source.zip
           echo "PROJECT_DIR=warp-go-masque-backup-main" >> "$GITHUB_ENV"
 
       - name: Install Linux build dependencies
@@ -131,7 +131,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Warp-Go-TV-MASQUE-English-Stage1
+          name: Warp-Go-TV-MASQUE-English-Stage2
           path: |
             ${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
