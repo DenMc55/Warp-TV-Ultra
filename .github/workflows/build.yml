@@ -19,6 +19,7 @@ jobs:
         run: |
           unzip -q Warp-Go-TV-MASQUE-stage2-source.zip
           echo "PROJECT_DIR=warp-go-masque-backup-main" >> "$GITHUB_ENV"
+          sed -i '/const MODES:/d' warp-go-masque-backup-main/gui/frontend/src/lib/theme.ts
 
       - name: Install Linux build dependencies
         run: |
@@ -126,12 +127,18 @@ jobs:
         working-directory: ${{ env.PROJECT_DIR }}/gui/build/android
         run: |
           chmod +x ./gradlew
-          VERSION_NAME=1.0 ./gradlew assembleRelease --no-daemon
+          VERSION_NAME=1.1 ./gradlew assembleRelease --no-daemon
+
+      - name: Rename APK
+        run: |
+          cp \
+            "${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/app-release.apk" \
+            "${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage2.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Warp-Go-TV-MASQUE-English-Stage2
+          name: Warp-TV-Ultra-Stage2
           path: |
-            ${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/app-release.apk
+            ${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage2.apk
           if-no-files-found: error
