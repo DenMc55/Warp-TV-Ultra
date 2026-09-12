@@ -137,7 +137,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Warp-TV-Ultra-Stage3
+          name: Warp-TV-Ultra-Stage4-Revised
           path: |
             ${{ env.PROJECT_DIR }}/gui/build/android/app/build/outputs/apk/release/Warp-TV-Ultra-Stage4-Revised.apk
           if-no-files-found: error
